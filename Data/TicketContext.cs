@@ -12,4 +12,15 @@ public class TicketContext : DbContext
         optionsBuilder.UseSqlite("Data Source=tickets.sqlite");
         base.OnConfiguring(optionsBuilder);
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Ticket>()
+            .Property(t => t.Priority)
+            .HasConversion<string>();
+
+        modelBuilder.Entity<Ticket>()
+            .Property(t => t.Status)
+            .HasConversion<string>();
+    }
 }
