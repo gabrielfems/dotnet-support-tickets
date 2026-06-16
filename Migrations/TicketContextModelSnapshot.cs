@@ -45,7 +45,7 @@ namespace Person.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tickets");
+                    b.ToTable("Tickets", (string)null);
                 });
 #pragma warning restore 612, 618
         }
