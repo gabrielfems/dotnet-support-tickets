@@ -1,5 +1,6 @@
 using Person.Data;
 using Person.Routes;
+using Person.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<TicketContext>();
+builder.Services.AddScoped<TicketService>();
+builder.Services.ConfigureHttpJsonOptions(options =>
+{
+    options.SerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+});
 
 var app = builder.Build();
 
